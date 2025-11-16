@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hoso Studio — Vintage</title>
+  <meta name="description" content="Винтажное портфолио видеороликов. Адаптивный дизайн и сохранение плейлистов в браузере." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site" id="site">
+    <header class="site__header">
+      <div class="brand" role="banner">
+        <div class="logo" aria-hidden="true">IO</div>
+        <div class="brand-text">
+          <div class="name">Hoso Studio</div>
+          <div class="role">Режиссёр • Монтаж</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div id="ownerArea" class="owner-area">
+          <button id="ownerToggle" class="btn btn--ghost">Войти как владелец</button>
+        </div>
+        <label id="fileLabel" class="btn btn--primary file-label" title="Добавить видео" style="display:none">
+          ➕ Добавить видео
+          <input id="fileInput" type="file" accept="video/*" multiple style="display:none" />
+        </label>
+        <button id="addPlayerBtn" class="btn btn--outline" title="Добавить пустой плеер">Добавить плеер</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="intro">
+        <h1 class="animated-title">Hoso Studio</h1>
+       
+
+      <section id="playersContainer" class="players-grid" aria-live="polite">
+        <!-- Players injected by JS -->
+      </section>
+
+    </main>
+
+    <footer class="site__footer">
+      © <span id="year"></span> Иосиф — Все права защищены
+    </footer>
+  </div>
+
+  <!-- player template (unchanged structure, small attrs added) -->
+  <template id="playerTemplate">
+    <div class="player card" role="region" aria-label="Плеер">
+      <div class="player__header">
+        <div class="player-title"><span class="player-index"></span></div>
+        <div class="player-controls">
+          <button class="icon-btn btn-prev" title="Предыдущее">⟨</button>
+          <button class="icon-btn btn-playpause" title="Воспроизвести">▶</button>
+          <button class="icon-btn btn-next" title="Следующее">⟩</button>
+          <button class="icon-btn btn-loop" title="Повтор">🔁</button>
+          <button class="icon-btn btn-remove" title="Удалить плеер">✖</button>
+        </div>
+      </div>
+
+      <div class="player__body">
+        <div class="player__media">
+          <div class="media-wrap" data-state="idle">
+            <video class="video-element" playsinline controls preload="metadata" crossorigin="anonymous"></video>
+            <div class="iframe-wrapper" aria-hidden="true"></div>
+          
+          </div>
+
+          <div class="player__meta">
+            <div class="progress-row">
+              <input type="range" class="progress" min="0" max="100" value="0" step="0.1" aria-label="Прогресс" />
+              <div class="time">00:00 / 00:00</div>
+            </div>
+
+            <div class="controls-row">
+              <input type="range" class="volume" min="0" max="1" step="0.01" value="1" aria-label="Громкость" />
+              <button class="btn btn--ghost btn-fullscreen" title="Полноэкранный режим">⤢</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="player__sidebar">
+          <form class="addVideoForm">
+          
+
+          <div class="playlist">
+            <div class="playlist-title">Плейлист</div>
+            <ul class="playlist-list"></ul>
+            <div class="playlist-actions">
+              <button class="btn btn--outline btn-sort">Сортировать</button>
+              <button class="btn btn--ghost btn-clear-list">Очистить список</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
